@@ -64,8 +64,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # 刻意不写 -G：让 CMake 自己挑镜像上最新的 Visual Studio 生成器。
+      # 原先写死 "Visual Studio 17 2022" 会让 Configure 直接失败（exit 1），
+      # 因为 windows-latest 镜像里的 VS 版本会随镜像更新而变化。
+      # 下面这一步把实际可用的生成器打进日志，方便日后排查。
+      - name: Toolchain info
+        run: |
+          cmake --version
+          cmake --help | Select-String -Pattern 'Visual Studio'
+
       - name: Configure
-        run: cmake -S . -B build -G "Visual Studio 17 2022" -A x64
+        run: cmake -S . -B build -A x64
 
       - name: Build
         run: cmake --build build --config Debug
