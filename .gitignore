@@ -1,18 +1,105 @@
-# Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
+# =====================================================================
+#  C++ / CMake / MSVC / MinGW 项目通用 .gitignore
+#  用法：复制到项目根目录，重命名为 .gitignore
+#      copy "D:\Dev\01_Tools\setup\cpp.gitignore" .gitignore
+# =====================================================================
 
-# Other files and folders
-.settings/
+# ---------------------------------------------------------------- 构建产物
+# 关键：构建目录绝对不能提交。
+# 体积大、每台机器都不一样、且会造成无意义的冲突。
+# 这也和本机指南里「构建目录不要放 %TEMP%」的建议配套。
+build/
+Build/
+build-*/
+cmake-build-*/
+out/
+Out/
+bin/
+Bin/
+obj/
+lib/
+Lib/
+x64/
+Debug/
+Release/
+RelWithDebInfo/
+MinSizeRel/
 
-# Executables
-*.swf
-*.air
-*.ipa
-*.apk
+# ---------------------------------------------------------------- 编译中间文件
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+*.exe
+*.pdb
+*.ilk
+*.exp
+*.idb
+*.pch
+*.gch
+*.ipdb
+*.iobj
 
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+# ---------------------------------------------------------------- CMake 生成物
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CTestTestfile.cmake
+install_manifest.txt
+compile_commands.json
+CMakeUserPresets.json
+.ninja_deps
+.ninja_log
+*.ninja
+Makefile.gen
+
+# ---------------------------------------------------------------- vcpkg
+vcpkg_installed/
+.vcpkg-root
+vcpkg-manifest-install.log
+
+# ---------------------------------------------------------------- IDE / 编辑器
+# VS Code：忽略个人设置，但保留团队共享的配置
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+!.vscode/extensions.json
+!.vscode/c_cpp_properties.json
+.idea/
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.VC.db
+*.VC.VC.opendb
+.cache/
+.clangd/
+.ccache/
+
+# ---------------------------------------------------------------- 调试 / 分析
+*.dSYM/
+perf.data*
+callgrind.out.*
+*.gcda
+*.gcno
+*.gcov
+
+# ---------------------------------------------------------------- 系统文件
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# ---------------------------------------------------------------- 杂项
+*.log
+*.tmp
+*.bak
+*.orig
+*.rej
+*~
